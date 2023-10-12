@@ -1,0 +1,47 @@
+<p>{{ serverCreationStatus }}</p>
+<!-- <input type="text" class="form-control" (input)="onUpdateServerName($event)" /> -->
+<input type="text" class="form-control" [(ngModel)]="serverName" />
+<button
+  (click)="onCreateServer($event)"
+  [disabled]="!allowNewServer"
+  class="btn btn-primary"
+>
+  Add Server
+</button>
+<h1
+  [ngClass]="{ online: 'nonono' === testt }"
+  [test]="testt"
+  *ngIf="serverName; else noServer"
+>
+  Server was created! Name is {{ serverName }}
+</h1>
+
+<ng-template #noServer>
+  <h1>NO SERVER CREATED</h1>
+</ng-template>
+<input type="text" class="form-control" [(ngModel)]="username" />
+<p [ngStyle]="{ backgroundColor: getColor() }">{{ username }}</p>
+<button [disabled]="!username" (click)="username = ''" class="btn btn-info">
+  us
+</button>
+<app-server *ngFor="let server of servers"> </app-server>
+<button
+  (click)="
+    isVisible = !isVisible;
+    clicks.push(clicks.length ? +clicks[clicks.length - 1] + 1 : 0);
+    log()
+  "
+  class="btn btn-primary"
+>
+  Display Details
+</button>
+<p *ngIf="isVisible; else noVisible">Secret Password=tuna</p>
+<ng-template #noVisible>
+  <p>Secret Password=****</p>
+</ng-template>
+<p
+  *ngFor="let click of clicks; let i = index"
+  [ngStyle]="{ backgroundColor: i > 3 ? 'blue' : 'transparent' }"
+>
+  {{ click }} {{ i }}
+</p>
